@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisitorPlacementTool", "VisitorPlacementTool\VisitorPlacementTool.csproj", "{DDC9E5F7-C8A5-4D57-93E1-766952ADCE86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorPlacementToolBackend", "VistorPlacementToolBackend\VisitorPlacementToolBackend.csproj", "{93A564DE-1573-4AD1-9193-903C6D19ABDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDC9E5F7-C8A5-4D57-93E1-766952ADCE86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC9E5F7-C8A5-4D57-93E1-766952ADCE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC9E5F7-C8A5-4D57-93E1-766952ADCE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC9E5F7-C8A5-4D57-93E1-766952ADCE86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A564DE-1573-4AD1-9193-903C6D19ABDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A564DE-1573-4AD1-9193-903C6D19ABDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A564DE-1573-4AD1-9193-903C6D19ABDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A564DE-1573-4AD1-9193-903C6D19ABDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0873E0CD-7BB5-4B8F-81CC-432EFD912147}
+	EndGlobalSection
+EndGlobal
