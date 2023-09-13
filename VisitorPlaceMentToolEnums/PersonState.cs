@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VisitorPlacementToolBackend.Interface
+namespace VisitorPlaceMentToolEnums
 {
-    interface ISubGroup
+    public enum PersonState
     {
+        Unplaced, Placed, Cancelled, Rejected
     }
 }
