@@ -18,6 +18,20 @@ namespace VisitorPlacementToolController.Objects
         public IPerson? cellOwner { get; set; }
         public IPerson? CellOwner { get { return cellOwner; } set { cellOwner = value; } }
 
+        public string CellOwnerName
+        {
+            get { if (cellOwner == null)
+                {
+                    return "Hier zit nog niemand";
+                }
+                else
+                {
+                    return CellOwner.Name;
+                }
+                 }
+        }
+
+
         public IChair? neighbourLeft { get; set; }
         public IChair? NeighbourLeft { get { return neighbourLeft; } set { neighbourLeft = value; } }
 
@@ -26,12 +40,26 @@ namespace VisitorPlacementToolController.Objects
 
         public string GetGUID()
         {
-            return CellOwner.Id;
+            if (CellOwner != null)
+            {
+                return CellOwner.Id;
+            }
+            else
+            {
+                return "no CellOwner";
+            }
         }
 
         public string GetName()
         {
-            return CellOwner.Name;
+            if (CellOwner != null)
+            {
+                return CellOwner.Name;
+            }
+            else
+            {
+                return "no CellOwner";
+            }
         }
 
         public void SetupNeighbours(IChair? left, IChair? right)

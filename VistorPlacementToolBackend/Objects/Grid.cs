@@ -12,14 +12,14 @@ namespace VisitorPlacementToolController.Objects
     {
         private int rows;
 
-        public int Rows
+        public int RowLength
         {
             get { return rows; }
             set { rows = value; }
         }
         private int collums;
 
-        public int Collums
+        public int CollumLength
         {
             get { return collums; }
             set { collums = value; }
@@ -42,17 +42,21 @@ namespace VisitorPlacementToolController.Objects
 
         public Grid(int rows, int collums)
         {
-            this.Rows = rows;
-            this.Collums = collums;
+            this.RowLength = rows;
+            this.CollumLength = collums;
 
-            Chairs = new Chair[Rows, Collums];
+            Chairs = new Chair[RowLength, CollumLength];
 
-            for (int x = 0; x < Rows; x++)
+            for (int x = 0; x < RowLength; x++)
             {
-                for (int y = 0; y < Collums; y++)
+                for (int y = 0; y < CollumLength; y++)
                 {
                     
                     Chairs[x, y] = new Chair();
+                    if(x == 0)
+                    {
+                        Chairs[x,y].FrontRowSeat = true;
+                    }
                     
                 }
             }
@@ -60,13 +64,13 @@ namespace VisitorPlacementToolController.Objects
         }
         public void CreateCells(int rows, int collums)
         {
-            Rows = rows;
-            Collums = collums;
-            Chairs = new IChair[Rows, Collums];
+            RowLength = rows;
+            CollumLength = collums;
+            Chairs = new IChair[RowLength, CollumLength];
 
-            for (int i = 0; i < Rows; i++)
+            for (int i = 0; i < RowLength; i++)
             {
-                for (int j = 0; j < Collums; j++)
+                for (int j = 0; j < CollumLength; j++)
                 {
                     Chairs[i, j] = new Chair();
                 }
@@ -77,9 +81,9 @@ namespace VisitorPlacementToolController.Objects
 
         public void RemoveGroup(string guid)
         {
-            for (int i = 0; i < Rows; i++)
+            for (int i = 0; i < RowLength; i++)
             {
-                for (int j = 0; j < Collums; j++)
+                for (int j = 0; j < CollumLength; j++)
                 {
                     if (Chairs[i,j].GetGUID() == guid)
                     {
@@ -91,7 +95,7 @@ namespace VisitorPlacementToolController.Objects
 
         public void SetNeibours()
         {
-            for (int i = 0; i < Rows; i++)
+            for (int i = 0; i < RowLength; i++)
             {
                 for (int j = 0; j < collums; j++)
                 {
@@ -99,7 +103,7 @@ namespace VisitorPlacementToolController.Objects
                     {
                         chairs[i, j].SetupNeighbours(null, chairs[i + 1, j]);
                     }
-                    else if (i == Rows - 1)
+                    else if (i == RowLength - 1)
                     {
                         chairs[i, j].SetupNeighbours(chairs[i - 1, j], null);
                     }
@@ -111,13 +115,13 @@ namespace VisitorPlacementToolController.Objects
             }
         }
 
-        public bool TryPlaceGrid(IPerson p, bool FirstRowOnly = true)
+        public bool TryPlaceGrid(IPerson p, bool FirstRowOnly = false)
         {
             if (!FirstRowOnly)
             {
                 for (int j = 1; j < collums; j++)
                 {
-                    for (int i = 0; i < Rows; i++)
+                    for (int i = 0; i < RowLength; i++)
                     {
 
                         if (chairs[i, j].TryPlaceVisitor(p))
@@ -128,7 +132,7 @@ namespace VisitorPlacementToolController.Objects
                     }
                 }
             }
-            for (int j = 0; j < Rows; j++)
+            for (int j = 0; j < RowLength; j++)
             {
                 if (Chairs[j, 0].TryPlaceVisitor(p))
                 {

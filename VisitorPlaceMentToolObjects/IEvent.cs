@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace VisitorPlaceMentToolInterfaces
 {
-    public interface IManger
+    public interface IEvent
     {
         public List<IGrid> Grids { get; set; }
         public List<IGroup> Groups { get; set; }
 
+        public List<IGroup> RejectedGroups { get; }
+
+        public void CreateGrid(int width, int height);
         public void PlaceAllGroups();
         public void RemoveGroup(string groupID);
         public void TryPlaceGroup(IGroup group);

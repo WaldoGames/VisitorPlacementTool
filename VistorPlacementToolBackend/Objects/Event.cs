@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using VisitorPlaceMentToolInterfaces;
 
 namespace VisitorPlacementToolController.Objects
 {
-    public class Manger : IManger
+    public class Event : IEvent
     {
         private List<IGrid> grids;
         public List<IGrid> Grids { get { return grids; } set { grids = value; } }
@@ -16,7 +17,9 @@ namespace VisitorPlacementToolController.Objects
         private List<IGroup> groups;
         public List<IGroup> Groups { get { return groups; } set { groups = value; } }
 
-        public Manger()
+        public List<IGroup> RejectedGroups {get { return groups.Where(g => g.GroupState == GroupState.Rejected_Not_Enough_Seats || g.GroupState == GroupState.Rejected_Not_enough_Seats_Child || g.GroupState == GroupState.Not_Enough_Adults || g.GroupState == GroupState.Children_only_group).ToList(); } }
+
+        public Event()
         {
 
         }
@@ -72,6 +75,7 @@ namespace VisitorPlacementToolController.Objects
                     {
                             //rejected because there is no place for kids left.
                         g.GroupState = GroupState.Rejected_Not_enough_Seats_Child;
+                        RemoveGroup(g.Id);
                         done = true;
                         //remove other group member because rejected?
                     }
@@ -116,6 +120,7 @@ namespace VisitorPlacementToolController.Objects
                     {
                         //rejected because there is no place for all guests.
                         g.GroupState = GroupState.Rejected_Not_Enough_Seats;
+                        RemoveGroup(g.Id);
                         done = true;
                     }
                 }
@@ -146,8 +151,18 @@ namespace VisitorPlacementToolController.Objects
 
         public void TryPlaceGroup(IGroup group)
         {
+            if(group.UnplacedCount == group.UnplacedChildCount)
+            {
+                group.GroupState = GroupState.Children_only_group;
+                return;
+            }
+
             ChildPlaceLoop(group);
-            PlaceLoop(group);
+            if (group.GroupState != GroupState.Rejected_Not_enough_Seats_Child)
+            {
+                PlaceLoop(group);
+            } 
+
         }
     }
 }

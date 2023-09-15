@@ -10,6 +10,8 @@ namespace VisitorPlaceMentToolInterfaces
     {
         public bool FrontRowSeat { get; set; }
         public IPerson? CellOwner { get; set; }
+
+        public string CellOwnerName { get; }
         public IChair? NeighbourLeft { get; set; }
         public IChair? NeighbourRight { get; set; }
         public string GetGUID();

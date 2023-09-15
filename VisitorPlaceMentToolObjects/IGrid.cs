@@ -8,8 +8,8 @@ namespace VisitorPlaceMentToolInterfaces
 {
     public interface IGrid
     {
-        public int Rows { get; set; }
-        public int Collums { get; set; }
+        public int RowLength { get; set; }
+        public int CollumLength { get; set; }
         public bool Open { get; set; }
         public IChair[,] Chairs { get; set; }
 

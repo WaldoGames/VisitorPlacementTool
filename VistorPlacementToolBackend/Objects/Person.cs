@@ -31,9 +31,7 @@ namespace VisitorPlacementToolController.Objects
         
         public bool cancelled;
         public bool Cancelled { get { return cancelled; } set { cancelled = value; } }
-
-        private string id;
-        public string Id { get { return id; } set { id = value; } }
+        public string Id { get { return parent.Id; } }
 
         public IGroup parent;
         public IGroup Parent { get { return parent; } set { parent = value; } }
@@ -43,8 +41,13 @@ namespace VisitorPlacementToolController.Objects
 
         public string name { get; set; }
         public string Name { get { return name; } set { name = value; } }
+        private DateTime birthday;
 
-        public DateTime BirthDay;
+        public DateTime BirthDay
+        {
+            get { return birthday; }
+            set { birthday = value; }
+        }
 
         public void SetParent(IGroup parentGroup)
         {
