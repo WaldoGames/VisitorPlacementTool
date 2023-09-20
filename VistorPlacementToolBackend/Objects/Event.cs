@@ -26,15 +26,46 @@ namespace VisitorPlacementToolController.Objects
 
         public void CreateGrid(int width, int height)
         {
+            if(width > 10)
+            {
+                width = 10;
+            }if(height > 3)
+            {
+                height = 3;
+            }
+
             Grid tmp = new Grid(width, height);
             AddGrid(tmp);
         }
+        public void NameGrid(IGrid grid)
+        {
+            string[] alphabet = new string[] {
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+            "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+            "U", "V", "W", "X", "Y", "Z"
+            };
+            if (Grids.Count > 25)
+            {
+                int tmp = Grids.Count;
+
+                decimal Div = tmp / 26;
+                int DoubleDigit = (int)Math.Floor(Div) - 1;
+                int SingleDigit = tmp % 26;
+                grid.GridName = alphabet[DoubleDigit];
+                grid.GridName += alphabet[SingleDigit];
+            }
+            else
+            {
+                grid.GridName = alphabet[Grids.Count];
+            }
+        }
         public void AddGrid(IGrid grid)
         {
-            if(Grids == null)
+            if (Grids == null)
             {
                 Grids = new List<IGrid>();
             }
+            NameGrid(grid);
             Grids.Add(grid);
         }
         public void AddGroup(IGroup group)
@@ -59,6 +90,7 @@ namespace VisitorPlacementToolController.Objects
                     item.TryPlaceUnplacedChildGroupAll(g);
                 }
             }
+            
             bool done = false;
             while (!done) {
                 if (g.UnplacedChildCount > 0)
@@ -142,6 +174,7 @@ namespace VisitorPlacementToolController.Objects
                         if (item.CellOwner.Id == groupID)
                         {
                             item.CellOwner.PersonState = PersonState.Unplaced;
+                            item.CellOwner.Placed = false;
                             item.CellOwner = null;
                         }
                     }

@@ -11,6 +11,8 @@ namespace VisitorPlaceMentToolInterfaces
         public int RowLength { get; set; }
         public int CollumLength { get; set; }
         public bool Open { get; set; }
+
+        public string GridName { get; set; }
         public IChair[,] Chairs { get; set; }
 
         public void CreateCells(int rows, int collums);

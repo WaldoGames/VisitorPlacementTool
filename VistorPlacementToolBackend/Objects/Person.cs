@@ -15,7 +15,7 @@ namespace VisitorPlacementToolController.Objects
         public bool Child { get {
                 DateTime ZeroTime= new DateTime(1,1,1);
                 TimeSpan span = (DateTime.Now - BirthDay);
-                if((ZeroTime+span).Year-1 < 18)
+                if((ZeroTime+span).Year-1 < 12)
                 {
                     return true;
                 }

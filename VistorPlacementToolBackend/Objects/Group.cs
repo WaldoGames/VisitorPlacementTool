@@ -44,14 +44,14 @@ namespace VisitorPlacementToolController.Objects
         {
             get
             {
-                return People.Where(p => p.Child == true && p.Placed == false).Count();
+                return People.Where(p => p.Child == true && p.Placed == false && p.Cancelled == false).Count();
             }
         }
         public int UnplacedCount
         {
             get
             {
-                return People.Where(p => p.Placed == false).Count();
+                return People.Where(p => p.Placed == false && p.Cancelled == false).Count();
             }
         }
 
@@ -61,13 +61,13 @@ namespace VisitorPlacementToolController.Objects
             {
                 List<IPerson> ChildGroup = new List<IPerson>();
 
-                IPerson? adult = people.Where(p => p.Child == false).FirstOrDefault();
+                IPerson? adult = people.Where(p => p.Child == false && p.Placed == false && p.Cancelled == false).FirstOrDefault();
                 if (adult == null)
                 {
                     return null;
                 }
                 ChildGroup.Add(adult);
-                ChildGroup.AddRange(people.Where(p => p.Child == true));
+                ChildGroup.AddRange(people.Where(p => p.Child == true && p.Cancelled == false && p.Placed == false));
 
                 return ChildGroup;
             }

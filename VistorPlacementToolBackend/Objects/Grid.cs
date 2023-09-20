@@ -39,7 +39,13 @@ namespace VisitorPlacementToolController.Objects
             get { return chairs; }
             set { chairs = value; }
         }
+        private string girdName;
 
+        public string GridName
+        {
+            get { return girdName; }
+            set { girdName = value; }
+        }
         public Grid(int rows, int collums)
         {
             this.RowLength = rows;
@@ -182,7 +188,7 @@ namespace VisitorPlacementToolController.Objects
 
         public void TryPlaceUnplacedGroupAll(IGroup group)
         {
-            foreach (IPerson p in group.People.Where(p => p.Child == false && p.Placed == false))
+            foreach (IPerson p in group.People.Where(p => p.Child == false && p.Placed == false && p.Cancelled == false))
             {
                 bool tmp = TryPlaceGrid(p);
             }

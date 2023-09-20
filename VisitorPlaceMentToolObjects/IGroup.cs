@@ -11,6 +11,7 @@ namespace VisitorPlaceMentToolInterfaces
     {
         public List<IPerson> People { get; set; }
         public string Id { get; set; }
+
         public bool ContainsChild { get; }
         public int UnplacedChildCount { get; }
         public int UnplacedCount { get; }
