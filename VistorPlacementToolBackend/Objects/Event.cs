@@ -19,11 +19,6 @@ namespace VisitorPlacementToolController.Objects
 
         public List<IGroup> RejectedGroups {get { return groups.Where(g => g.GroupState == GroupState.Rejected_Not_Enough_Seats || g.GroupState == GroupState.Rejected_Not_enough_Seats_Child || g.GroupState == GroupState.Not_Enough_Adults || g.GroupState == GroupState.Children_only_group).ToList(); } }
 
-        public Event()
-        {
-
-        }
-
         public void CreateGrid(int width, int height)
         {
             if(width > 10)
@@ -46,13 +41,9 @@ namespace VisitorPlacementToolController.Objects
             };
             if (Grids.Count > 25)
             {
-                int tmp = Grids.Count;
-
-                decimal Div = tmp / 26;
-                int DoubleDigit = (int)Math.Floor(Div) - 1;
-                int SingleDigit = tmp % 26;
-                grid.GridName = alphabet[DoubleDigit];
-                grid.GridName += alphabet[SingleDigit];
+                int DoubleDigit = (int)Math.Floor((decimal)Grids.Count / 26) - 1;
+                int SingleDigit = Grids.Count % 26;
+                grid.GridName = alphabet[DoubleDigit] + alphabet[SingleDigit];
             }
             else
             {
@@ -82,40 +73,22 @@ namespace VisitorPlacementToolController.Objects
 
         public void ChildPlaceLoop(IGroup g)
         {
-            foreach (IGrid item in grids.Where(p => p.Open == true))
+            foreach (IGrid item in grids)
             {
                 if (g.UnplacedChildCount > 0)
                 {
 
                     item.TryPlaceUnplacedChildGroupAll(g);
+
                 }
             }
             
-            bool done = false;
-            while (!done) {
-                if (g.UnplacedChildCount > 0)
-                {
-
-
-                    if (grids.Where(grid => grid.Open == false).Count() > 0)
-                    {
-                        grids.Where(grid => grid.Open == false).FirstOrDefault().Open = true;
-                        ChildPlaceLoop(g);
-                       
-                    }
-                    else
-                    {
-                            //rejected because there is no place for kids left.
-                        g.GroupState = GroupState.Rejected_Not_enough_Seats_Child;
-                        RemoveGroup(g.Id);
-                        done = true;
-                        //remove other group member because rejected?
-                    }
-                }
-                else
-                {
-                    done = true;
-                }
+            if (g.UnplacedChildCount > 0)
+            {
+                //rejected because there is no place for kids left.
+                g.GroupState = GroupState.Rejected_Not_enough_Seats_Child;
+                RemoveGroup(g.Id);
+                //remove other group member because rejected?
             }
         }
 
@@ -131,36 +104,20 @@ namespace VisitorPlacementToolController.Objects
 
         public void PlaceLoop(IGroup g)
         {
-            foreach (IGrid item in grids.Where(p => p.Open == true))
+            foreach (IGrid item in grids)
             {
                 if (g.UnplacedCount > 0)
                 {
                     item.TryPlaceUnplacedGroupAll(g);
                 }
             }
-            bool done = false;
-            while (!done)
+
+            if (g.UnplacedCount > 0)
             {
-                if (g.UnplacedCount > 0)
-                {
-                    if (grids.Where(grid => grid.Open == false).Count() > 0)
-                    {
-                        grids.Where(grid => grid.Open == false).FirstOrDefault().Open = true;
-                        PlaceLoop(g);
-                    }
-                    else
-                    {
-                        //rejected because there is no place for all guests.
-                        g.GroupState = GroupState.Rejected_Not_Enough_Seats;
-                        RemoveGroup(g.Id);
-                        done = true;
-                    }
-                }
-                else
-                {
-                    done = true;
-                }
+                 g.GroupState = GroupState.Rejected_Not_Enough_Seats;
+                 RemoveGroup(g.Id);
             }
+
         }
 
         public void RemoveGroup(string groupID)

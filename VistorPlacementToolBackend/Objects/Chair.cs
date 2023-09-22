@@ -16,7 +16,18 @@ namespace VisitorPlacementToolController.Objects
         public bool FrontRowSeat { get { return frontRowSeat; } set { frontRowSeat = value; } }
 
         public IPerson? cellOwner { get; set; }
-        public IPerson? CellOwner { get { return cellOwner; } set { cellOwner = value; } }
+        public IPerson? CellOwner { get { return cellOwner; } set 
+            { if(cellOwner != null)
+                {
+                    cellOwner.Chair = null;
+                }
+              cellOwner = value;
+                if (cellOwner != null)
+                {
+                    cellOwner.Chair = this;
+                }
+            } 
+        }
 
         public string CellOwnerName
         {
@@ -74,47 +85,44 @@ namespace VisitorPlacementToolController.Objects
             {
                 return false;
             }
-            if (person.Child == true)
+            if (person.Child == false || (person.Child == true && (CheckNeighbourLeft(person) || checkNeibourRight(person))))
             {
-                /*if (childCell == true)
-                {*/
-                if (NeighbourLeft != null)
-                {
-                    if (NeighbourLeft.CellOwner != null)
-                    {
-                        if (NeighbourLeft.CellOwner.Parent.Id == person.Parent.Id)
-                        {
-                            CellOwner = person;
-                            person.Placed = true;
-                            return true;
-                        }
-                    }
-                }
-                if (NeighbourRight != null)
-                {
-                    if (NeighbourRight.CellOwner != null)
-                    {
-                        if (NeighbourRight.CellOwner.Parent.Id == person.Parent.Id)
-                        {
-                            CellOwner = person;
-                            person.Placed = true;
-                            return true;
-                        }
-                    }
-                }
-                //}
-                /*if(childCell == false)
-                {
-                    return false;
-                }*/
-            }
-            else
-            {
-                CellOwner = person;
-                person.Placed = true;
+                PlaceVisitor(person);
                 return true;
             }
-
+            return false;
+        }
+        public void PlaceVisitor(IPerson person)
+        {
+            CellOwner = person;
+            person.Placed = true;
+        }
+        public bool CheckNeighbourLeft(IPerson person)
+        {
+            if (NeighbourLeft != null)
+            {
+                if (NeighbourLeft.CellOwner != null)
+                {
+                    if (NeighbourLeft.CellOwner.Parent.Id == person.Parent.Id)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool checkNeibourRight(IPerson person)
+        {
+            if (NeighbourRight != null)
+            {
+                if (NeighbourRight.CellOwner != null)
+                {
+                    if (NeighbourRight.CellOwner.Parent.Id == person.Parent.Id)
+                    {
+                        return true;
+                    }
+                }
+            }
             return false;
         }
 

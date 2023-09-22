@@ -21,6 +21,8 @@ namespace VisitorPlaceMentToolInterfaces
 
         public IGroup Parent { get; set; }
 
+        public IChair? Chair { get; set; }
+
         public PersonState PersonState { get; set; }
 
         public DateTime BirthDay { get; set; }

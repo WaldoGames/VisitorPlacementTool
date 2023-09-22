@@ -31,6 +31,15 @@ namespace VisitorPlacementToolController.Objects
         
         public bool cancelled;
         public bool Cancelled { get { return cancelled; } set { cancelled = value; } }
+
+        private IChair? chair;
+
+        public IChair? Chair
+        {
+            get { return chair; }
+            set { chair = value; }
+        }
+
         public string Id { get { return parent.Id; } }
 
         public IGroup parent;

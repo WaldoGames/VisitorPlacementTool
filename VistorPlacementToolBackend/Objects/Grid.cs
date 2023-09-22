@@ -24,13 +24,20 @@ namespace VisitorPlacementToolController.Objects
             get { return collums; }
             set { collums = value; }
         }
-
-        private bool open;
-
         public bool Open
         {
-            get { return open; }
-            set { open = value; }
+            get {
+            
+                foreach( IChair c in Chairs)
+                {
+                    if(c.CellOwner != null)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+
+            }
         }
         private IChair[,] chairs;
 
@@ -46,6 +53,7 @@ namespace VisitorPlacementToolController.Objects
             get { return girdName; }
             set { girdName = value; }
         }
+
         public Grid(int rows, int collums)
         {
             this.RowLength = rows;
@@ -164,27 +172,27 @@ namespace VisitorPlacementToolController.Objects
                 {
                     bool tmp = TryPlaceGrid(p, true);
                 }
-
-                if (group.UnplacedCount <= 0)
+                if (group.UnplacedChildCount > 0 && group.GetChildGroup == null)
                 {
-                    group.GroupState = GroupState.Unplaced;
+                    foreach (IPerson person in childgroup)
+                    {
+                        if (person.Chair != null)
+                        {
+                            person.Chair.CellOwner = null;
+                            person.PersonState = PersonState.Unplaced;
+                            person.Placed = false;
+                        }
+                    }
                 }
-                else if (group.UnplacedCount > 0)
-                {
-                    group.GroupState = GroupState.PatialPlaced;
-                }
-                else
-                {
-                    group.GroupState = GroupState.Placed;
-                }
+                CheckBasicGroupStates(group);
             }
             else
             {
                 group.GroupState = GroupState.Not_Enough_Adults;
+                
             }
-        }
 
-        
+        }   
 
         public void TryPlaceUnplacedGroupAll(IGroup group)
         {
@@ -193,7 +201,12 @@ namespace VisitorPlacementToolController.Objects
                 bool tmp = TryPlaceGrid(p);
             }
 
-            if (group.UnplacedCount == group.People.Count)
+            CheckBasicGroupStates(group);
+
+        }
+        public void CheckBasicGroupStates(IGroup group)
+        {
+            if (group.UnplacedCount <= 0)
             {
                 group.GroupState = GroupState.Unplaced;
             }
@@ -201,11 +214,10 @@ namespace VisitorPlacementToolController.Objects
             {
                 group.GroupState = GroupState.PatialPlaced;
             }
-            else
+            else if (group.UnplacedCount == group.People.Count)
             {
                 group.GroupState = GroupState.Placed;
             }
-
         }
     }
     
