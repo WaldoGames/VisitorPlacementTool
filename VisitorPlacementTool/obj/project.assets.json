@@ -1,0 +1,144 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0-windows7.0": {
+      "VisitorPlacementToolController/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "VisitorPlaceMentToolEnums": "1.0.0",
+          "VisitorPlaceMentToolInterfaces": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/VisitorPlacementToolController.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VisitorPlacementToolController.dll": {}
+        }
+      },
+      "VisitorPlaceMentToolEnums/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/VisitorPlaceMentToolEnums.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VisitorPlaceMentToolEnums.dll": {}
+        }
+      },
+      "VisitorPlaceMentToolInterfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "VisitorPlaceMentToolEnums": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/VisitorPlaceMentToolInterfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/VisitorPlaceMentToolInterfaces.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VisitorPlacementToolController/1.0.0": {
+      "type": "project",
+      "path": "../VistorPlacementToolBackend/VisitorPlacementToolController.csproj",
+      "msbuildProject": "../VistorPlacementToolBackend/VisitorPlacementToolController.csproj"
+    },
+    "VisitorPlaceMentToolEnums/1.0.0": {
+      "type": "project",
+      "path": "../VisitorPlaceMentToolEnums/VisitorPlaceMentToolEnums.csproj",
+      "msbuildProject": "../VisitorPlaceMentToolEnums/VisitorPlaceMentToolEnums.csproj"
+    },
+    "VisitorPlaceMentToolInterfaces/1.0.0": {
+      "type": "project",
+      "path": "../VisitorPlaceMentToolObjects/VisitorPlaceMentToolInterfaces.csproj",
+      "msbuildProject": "../VisitorPlaceMentToolObjects/VisitorPlaceMentToolInterfaces.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0-windows7.0": [
+      "VisitorPlaceMentToolEnums >= 1.0.0",
+      "VisitorPlaceMentToolInterfaces >= 1.0.0",
+      "VisitorPlacementToolController >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\bzweg\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Projects\\VisitorPlacementTool\\VisitorPlacementTool\\VisitorPlacementTool.csproj",
+      "projectName": "VisitorPlacementTool",
+      "projectPath": "C:\\Projects\\VisitorPlacementTool\\VisitorPlacementTool\\VisitorPlacementTool.csproj",
+      "packagesPath": "C:\\Users\\bzweg\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\VisitorPlacementTool\\VisitorPlacementTool\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\bzweg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "projectReferences": {
+            "C:\\Projects\\VisitorPlacementTool\\VisitorPlaceMentToolEnums\\VisitorPlaceMentToolEnums.csproj": {
+              "projectPath": "C:\\Projects\\VisitorPlacementTool\\VisitorPlaceMentToolEnums\\VisitorPlaceMentToolEnums.csproj"
+            },
+            "C:\\Projects\\VisitorPlacementTool\\VisitorPlaceMentToolObjects\\VisitorPlaceMentToolInterfaces.csproj": {
+              "projectPath": "C:\\Projects\\VisitorPlacementTool\\VisitorPlaceMentToolObjects\\VisitorPlaceMentToolInterfaces.csproj"
+            },
+            "C:\\Projects\\VisitorPlacementTool\\VistorPlacementToolBackend\\VisitorPlacementToolController.csproj": {
+              "projectPath": "C:\\Projects\\VisitorPlacementTool\\VistorPlacementToolBackend\\VisitorPlacementToolController.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

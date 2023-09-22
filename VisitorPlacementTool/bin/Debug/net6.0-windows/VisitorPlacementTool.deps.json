@@ -1,0 +1,65 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "VisitorPlacementTool/1.0.0": {
+        "dependencies": {
+          "VisitorPlaceMentToolEnums": "1.0.0",
+          "VisitorPlaceMentToolInterfaces": "1.0.0",
+          "VisitorPlacementToolController": "1.0.0"
+        },
+        "runtime": {
+          "VisitorPlacementTool.dll": {}
+        }
+      },
+      "VisitorPlacementToolController/1.0.0": {
+        "dependencies": {
+          "VisitorPlaceMentToolEnums": "1.0.0",
+          "VisitorPlaceMentToolInterfaces": "1.0.0"
+        },
+        "runtime": {
+          "VisitorPlacementToolController.dll": {}
+        }
+      },
+      "VisitorPlaceMentToolEnums/1.0.0": {
+        "runtime": {
+          "VisitorPlaceMentToolEnums.dll": {}
+        }
+      },
+      "VisitorPlaceMentToolInterfaces/1.0.0": {
+        "dependencies": {
+          "VisitorPlaceMentToolEnums": "1.0.0"
+        },
+        "runtime": {
+          "VisitorPlaceMentToolInterfaces.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VisitorPlacementTool/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VisitorPlacementToolController/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VisitorPlaceMentToolEnums/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VisitorPlaceMentToolInterfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

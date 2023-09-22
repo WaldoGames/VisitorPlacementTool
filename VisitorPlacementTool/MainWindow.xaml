@@ -1,0 +1,89 @@
+﻿<Window x:Class="VisitorPlacementTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:VisitorPlacementTool"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.RowSpan="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible">
+            <StackPanel x:Name="Main_Box">
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Column="1" >
+            <ComboBox  Margin="4" Grid.Column="1" ItemsSource="{Binding Event.Grids}" Height="20" SelectionChanged="RegenrateGrid" VerticalAlignment="Top" SelectedItem="{Binding SelectedGrid}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding GridName}"></TextBlock>
+                            <TextBlock Text=" - Open:"/>
+                            <TextBlock Text="{Binding Open}"></TextBlock>
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Naam:" ></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Id:" ></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Minder Jarig:" ></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Geanuleerd:" ></TextBlock>
+
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SelectedChair.CellOwnerName}" Grid.ColumnSpan="2" Margin="0,0,0,16" Grid.RowSpan="2"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SelectedChair.CellOwner.Parent.Id}" Grid.ColumnSpan="2" Margin="0,0,0,16" Grid.RowSpan="2"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding SelectedChair.CellOwner.Child}" Grid.ColumnSpan="2" Margin="0,0,0,16" Grid.RowSpan="2"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding SelectedChair.CellOwner.Cancelled}" Grid.ColumnSpan="2"></TextBlock>
+            </Grid>
+
+        </StackPanel>
+        <ListBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Rejected}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="groupID:"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="GroupState: "></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="People: "></TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Id}"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding GroupState}"></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding UnplacedCount}"></TextBlock>
+                    </Grid>
+
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Window>
